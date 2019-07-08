@@ -38,11 +38,6 @@ namespace PlaygroundLibary.Selenium
             }
         }
 
-        public static bool CheckIfClickable(IWebElement obj, int second)
-        {
-            return CheckIfClickable(obj, second);
-        }
-
         public static bool Enter(IWebElement e, string text)
         {
             if (CheckIfClickable(e))
@@ -69,7 +64,7 @@ namespace PlaygroundLibary.Selenium
         {
             try
             {
-                WebDriverWait wait = new WebDriverWait(Driver.driver, TimeSpan.FromSeconds(20));
+                WebDriverWait wait = new WebDriverWait(Driver.driver, TimeSpan.FromSeconds(5));
                 return wait.Until(d => obj.Displayed);
             }
             catch (Exception e)

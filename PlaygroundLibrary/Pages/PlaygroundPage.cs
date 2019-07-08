@@ -49,7 +49,7 @@ namespace PlaygroundLibrary.Pages
             Actions.Click(CreateSenioritiesButton);
             Actions.Enter(SeniorityName, seny);
             Session.CreatedSeniorityName = seny;
-            Actions.Click(SubmitSeniorityButton);
+            Actions.Click(Submit);
             return this;
         }
 
@@ -75,7 +75,7 @@ namespace PlaygroundLibrary.Pages
             Actions.Click(CreateTechnologyButton);
             Actions.Enter(TechnologyName, tech);
             Session.CreatedTechnologyName = tech;
-            Actions.Click(SubmitTechnologyButton);
+            Actions.Click(Submit);
             return this;
         }
 
@@ -143,7 +143,7 @@ namespace PlaygroundLibrary.Pages
 
         public PlaygroundPage SavePerson()
         {
-            Actions.Click(SubmitPersonButton);
+            Actions.Click(Submit);
             return this;
         }
 
@@ -170,5 +170,46 @@ namespace PlaygroundLibrary.Pages
             return false;
         }
 
+        public PlaygroundPage DeleteAllPersonFromList()
+        {
+            while(Actions.WaitForElement(FirstFromList))
+            {
+                Actions.Click(FirstFromList);
+                Actions.WaitForElement(DeletPersonIcon);
+                Actions.Click(DeletPersonIcon);
+                Actions.WaitForElement(DeleteButtonInDeleteModal);
+                Actions.Click(DeleteButtonInDeleteModal);
+                continue;
+            }
+            return this;
+        }
+
+        public bool AreAllPeopleFromListDeleted()
+        {
+            return TextIfListIsEmpty.Displayed;
+        }
+
+        public void SwitchName()
+        {
+            Actions.WaitForElement(FirstFromList);
+            string fullName = FirstFromList.Text;
+            Session.CreatedPersonName = fullName;
+            string[] firstAndLastName = fullName.Split(' ');
+            string firstName = firstAndLastName[0];
+            string lastName = firstAndLastName[1];
+            string switchedName = lastName + ' ' + firstName;
+            Actions.Click(FirstFromList);
+            Actions.Enter(FullNameField, switchedName);
+            Actions.WaitForElement(Submit);
+            Actions.Click(Submit);
+        }
+
+        public bool IsNameSwitched()
+        {
+            Actions.WaitForElement(FirstFromList);
+            string fullName = FirstFromList.Text;
+            if (fullName.Equals(Session.CreatedPersonName)) { return false; }
+            else { return true; }
+        }
     }
 }

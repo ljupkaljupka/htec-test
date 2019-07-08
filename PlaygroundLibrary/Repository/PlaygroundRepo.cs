@@ -19,8 +19,8 @@ namespace PlaygroundLibrary.Repository
         [FindsBy(How = How.Name, Using = "seniority_title")]
         protected internal IWebElement SeniorityName { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='root']/div/div[2]/div/div/div/div/form/button")]
-        protected internal IWebElement SubmitSeniorityButton { get; set; }
+        [FindsBy(How = How.XPath, Using = "//button[@type='submit']")]
+        protected internal IWebElement Submit { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//a[@href='/technologies']")]
         protected internal IWebElement TechnologyTab { get; set; }
@@ -30,9 +30,6 @@ namespace PlaygroundLibrary.Repository
 
         [FindsBy(How = How.Name, Using = "technology_title")]
         protected internal IWebElement TechnologyName { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//*[@id='root']/div/div[2]/div/div/div/div/form/button")]
-        protected internal IWebElement SubmitTechnologyButton { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//a[@href='/people']")]
         protected internal IWebElement PeopleTab { get; set; }
@@ -45,9 +42,6 @@ namespace PlaygroundLibrary.Repository
 
         [FindsBy(How = How.CssSelector, Using = ".react-dropdown-select-dropdown.react-dropdown-select-dropdown-position-bottom.css-1v2usbe-DropDown.e1qjn9k90")]
         protected internal IWebElement Dropdown { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "//*[@id='root']/div/div[2]/div/div/div/div/form/button")]
-        protected internal IWebElement SubmitPersonButton { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//*[@id='root']/div/div[2]/div/div/div/form/div[3]/div/div/div[1]/span")]
         protected internal IWebElement ValueFromSeniorityField { get; set; }
@@ -62,13 +56,20 @@ namespace PlaygroundLibrary.Repository
         protected internal IWebElement SeniorityInputField { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".list-group-item.list-group-item-action")]
-        protected internal IList <IWebElement>  List { get; set; }
+        protected internal IList<IWebElement> List { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//a[@class='list-group-item list-group-item-action'][1]")]
+        protected internal IWebElement FirstFromList { get; set; }
+        
         [FindsBy(How = How.ClassName, Using = "muted-text")]
         protected internal IWebElement TextIfListIsEmpty { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = ".far.fa-trash-alt")]
         protected internal IWebElement DeletPersonIcon { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='root']/div/div[2]/div/div/div/span[1]/div/div[2]/p/span[2]/button")]
+        protected internal IWebElement DeleteButtonInDeleteModal { get; set; }
+
 
     }
 }
